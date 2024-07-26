@@ -36,6 +36,7 @@ namespace TNTExam.Application.Services.Exams
 
 			var examDtos = exams.Select(c => new ExamDto
 			{
+				Id = c.Id,
 				ExamName = c.Name,
 				ExamDate = c.ExamDate,
 				UserName = $"{c.User.FirstName} {c.User.LastName}" 

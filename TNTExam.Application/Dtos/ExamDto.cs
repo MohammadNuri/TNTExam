@@ -8,9 +8,12 @@ namespace TNTExam.Application.Dtos
 {
 	public class ExamDto
 	{
+		public long Id { get; set; }
 		public string ExamName { get; set; } = string.Empty;
         public DateTime? ExamDate { get; set; }
 		public string? UserName { get; set; } = string.Empty;
         public long? UserId { get; set; }
-    }
+
+
+	}
 }

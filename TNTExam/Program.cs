@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TNTExam.Application;
 using TNTExam.Application.Services.Exams;
 using TNTExam.Application.Services.Lessons;
+using TNTExam.Application.Services.Scores;
 using TNTExam.Application.Services.Users;
 using TNTExam.Common;
 using TNTExam.Persistence.Context;
@@ -47,6 +48,7 @@ builder.Services.AddScoped<IGetAllLessonsService, GetAllLessonsService>();
 builder.Services.AddScoped<IGetAllExamService, GetAllExamService>();
 builder.Services.AddScoped<IAddExamService, AddExamService>();
 builder.Services.AddScoped<IGetAllUsersService, GetAllUsersService>();
+builder.Services.AddScoped<IGetAllScoreService, GetAllScoreService>();
 
 
 

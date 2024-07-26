@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TNTExam.Application.Dtos;
 using TNTExam.Application.Services.Exams;
+using TNTExam.Application.Services.Scores;
 using TNTExam.Application.Services.Users;
 using TNTExam.Common;
 using TNTExam.Models;
@@ -13,11 +14,16 @@ namespace TNTExam.Controllers
 		private readonly IGetAllExamService _getAllExamService;
 		private readonly IAddExamService _addExamService;
 		private readonly IGetAllUsersService _getAllUsersService;
-		public ExamController(IGetAllExamService getAllExamService, IAddExamService addExamService,IGetAllUsersService getAllUsersService)
+		private readonly IGetAllScoreService _getAlScoreService;
+		public ExamController(IGetAllExamService getAllExamService,
+			IAddExamService addExamService,
+			IGetAllUsersService getAllUsersService,
+			IGetAllScoreService getAlScoreService)
         {
             _getAllExamService = getAllExamService;
 			_addExamService = addExamService;
 			_getAllUsersService = getAllUsersService;
+			_getAlScoreService = getAlScoreService;
         }
 
         public IActionResult Index()
@@ -64,10 +70,20 @@ namespace TNTExam.Controllers
 		}
 
 
-		public IActionResult AddScore(long id)
+
+		public IActionResult AddScore(long examId)
 		{
+			var result = _getAlScoreService.Execute(examId);
+
+			return View(result.Value);
+		}
 
 
+
+
+		[HttpPost]
+		public IActionResult SubmitScores()
+		{
 			return Json(null);
 		}
 
