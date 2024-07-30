@@ -58,14 +58,14 @@
 										<a href="#" class="text-dark fw-bold text-hover-primary fs-6">@item.ExamName</a>
 									</td>
 									<td>
-										<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">@item.ExamDate</a>
+										<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">@item.ExamDate.Value.ToShortDateString()</a>
 									</td>
 									<td>
 										<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">@item.UserName</a>
 									</td>
 
 									<td class="text-end">
-										<a href="/Score/AddScore?examId=@item.Id" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+										<a href="/Exam/Detail?examId=@item.Id" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 											<i class="ki-duotone ki-pencil fs-2">
 												<span class="path1"></span>
 												<span class="path2"></span>
@@ -131,7 +131,7 @@
 							<span class="required">نام آزمون</span>
 						</label>
 						<!--end::Tags-->
-						<input type="text" class="form-control form-control-solid" placeholder="نام" name="ExamName" />
+						<input type="text" class="form-control form-control-solid" placeholder="نام آزمون" name="ExamName" />
 					</div>
 					<!--end::Input group-->
 					<!--begin::Input group-->
@@ -139,7 +139,7 @@
 						<!--begin::Col-->
 						<div class="col-md-6 fv-row">
 							<label class="required fs-6 fw-semibold mb-2">دانش آموز</label>
-							<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="انتخاب عضو" name="UserId">
+							<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="انتخاب دانش آموز" name="UserId">
 
 								<option value="">انتخاب user...</option>
 

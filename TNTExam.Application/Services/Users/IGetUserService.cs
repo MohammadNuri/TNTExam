@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 using TNTExam.Application.Dtos;
 using TNTExam.Common;
 
-namespace TNTExam.Application.Services.Exams
+namespace TNTExam.Application.Services.Users
 {
-	public interface IGetAllExamService
+	public interface IGetUserService
 	{
-		ServiceResult<List<ExamDto>> Execute();
-
-		ServiceResult<List<ExamDto>> Execute(long userId);
-
+		ServiceResult<List<UserDto>> Execute(long userId);
 	}
 }

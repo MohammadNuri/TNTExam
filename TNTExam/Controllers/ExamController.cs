@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TNTExam.Application.Dtos;
 using TNTExam.Application.Services.Exams;
+using TNTExam.Application.Services.Lessons;
 using TNTExam.Application.Services.Scores;
 using TNTExam.Application.Services.Users;
 using TNTExam.Common;
@@ -14,16 +15,23 @@ namespace TNTExam.Controllers
 		private readonly IGetAllExamService _getAllExamService;
 		private readonly IAddExamService _addExamService;
 		private readonly IGetAllUsersService _getAllUsersService;
-		private readonly IGetAllScoreService _getAlScoreService;
-		public ExamController(IGetAllExamService getAllExamService,
+		private readonly IGetAllScoreService _getAllScoreService;
+		private readonly IAddScoreService _addScoreService;
+		private readonly IGetAllLessonsService _getAllLessonsService;
+
+        public ExamController(IGetAllExamService getAllExamService,
 			IAddExamService addExamService,
-			IGetAllUsersService getAllUsersService,
-			IGetAllScoreService getAlScoreService)
+            IGetAllUsersService getAllUsersService,
+            IGetAllScoreService getAllScoreService,
+            IAddScoreService addScoreService,
+			IGetAllLessonsService getAllLessonsService)
         {
             _getAllExamService = getAllExamService;
-			_addExamService = addExamService;
-			_getAllUsersService = getAllUsersService;
-			_getAlScoreService = getAlScoreService;
+            _addExamService = addExamService;
+            _getAllUsersService = getAllUsersService;
+            _getAllScoreService = getAllScoreService;
+            _addScoreService = addScoreService;
+			_getAllLessonsService = getAllLessonsService;
         }
 
         public IActionResult Index()
@@ -45,12 +53,6 @@ namespace TNTExam.Controllers
 			return View(viewModel);
 		}
 
-		public IActionResult Detail(long id)
-		{
-			return View();
-		}
-
-
 		[HttpPost]
 		public IActionResult AddExam(ExamDto request)
 		{
@@ -71,21 +73,28 @@ namespace TNTExam.Controllers
 
 
 
-		public IActionResult AddScore(long examId)
+		public IActionResult Detail(long examId)
 		{
-			var result = _getAlScoreService.Execute(examId);
+			var score = _getAllScoreService.Execute(examId);
+			var lessons = _getAllLessonsService.GetAllLessons();
 
-			return View(result.Value);
+			//todo (check why it being null in /exam/detail?examid=anything)
+
+			ScoreViewModel model = new ScoreViewModel()
+			{
+				Score = score.Value,
+				Lessons = lessons.Value,
+			};
+
+			return View(model);
 		}
-
-
-
 
 		[HttpPost]
-		public IActionResult SubmitScores()
-		{
-			return Json(null);
-		}
+        public IActionResult AddScore(RequestScoreDto request)
+        {
+            var result = _addScoreService.Execute(request);
+            return Json(result);
+        }
 
 	}
 }

@@ -10,6 +10,7 @@ namespace TNTExam.Application.Services.Lessons
 {
     public interface IGetAllLessonsService
 	{
-		ServiceResult<AllLessonsDto> Execute();  
+		ServiceResult<AllLessonsDto> Execute();
+		ServiceResult<List<LessonDto>> GetAllLessons();
 	}
 }

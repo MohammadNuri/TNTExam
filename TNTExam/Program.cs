@@ -49,12 +49,8 @@ builder.Services.AddScoped<IGetAllExamService, GetAllExamService>();
 builder.Services.AddScoped<IAddExamService, AddExamService>();
 builder.Services.AddScoped<IGetAllUsersService, GetAllUsersService>();
 builder.Services.AddScoped<IGetAllScoreService, GetAllScoreService>();
-
-
-
-
-
-
+builder.Services.AddScoped<IAddScoreService, AddScoreService>();
+builder.Services.AddScoped<IGetUserService, GetUserService>();
 
 var app = builder.Build();
 
@@ -79,5 +75,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+    
 app.Run();

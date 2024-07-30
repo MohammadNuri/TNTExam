@@ -17,5 +17,6 @@ namespace TNTExam.Application.Dtos
         public string UserName { get; set; } = string.Empty;
 
         public List<LessonScoreDto> Lessons { get; set; } = new List<LessonScoreDto>();
+
 	}
 }

@@ -1,9 +1,124 @@
-﻿
+﻿@model ExamViewModel
+
+@{
+	var user = Model.Users.FirstOrDefault();
+}
 
 <!--begin::Content-->
 <div id="kt_app_content" class="app-content flex-column-fluid">
 	<!--begin::Content container-->
 	<div id="kt_app_content_container" class="app-container container-xxl">
+
+
+
+
+		@if (User.IsInRole("Student"))
+		{
+			<!--begin::Profile-->
+			<div class="card mb-5 mb-xxl-8">
+				<div class="card-body pt-9 pb-0">
+					<!--begin::Details---->
+					<div class="d-flex flex-wrap flex-sm-nowrap">
+						<!--begin: Pic-->
+						<div class="me-7 mb-4">
+							<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+								<img src="assets/media/avatars/300-1.jpg" alt="image" />
+								<div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-body h-20px w-20px"></div>
+							</div>
+						</div>
+						<!--end::Pic-->
+						<!--begin::Info-->
+						<div class="flex-grow-1">
+							<!--begin::Title-->
+							<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+								<!--begin::user-->
+								<div class="d-flex flex-column">
+									<!--begin::نام-->
+									<div class="d-flex align-items-center mb-2">
+										<a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">@user.FullName</a>
+										<a href="#">
+											<i class="ki-duotone ki-verify fs-1 text-primary">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+										</a>
+									</div>
+									<!--end::نام-->
+									<!--begin::Info-->
+									<div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+										<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+											<i class="ki-duotone ki-profile-circle fs-4 me-1">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>دانش آموز
+										</a>
+										@* <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+									<i class="ki-duotone ki-geolocation fs-4 me-1">
+									<span class="path1"></span>
+									<span class="path2"></span>
+									</i>منطقه زندگی
+									</a>
+									<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
+									<i class="ki-duotone ki-sms fs-4 me-1">
+									<span class="path1"></span>
+									<span class="path2"></span>
+									</i>max@kt.com
+									</a> *@
+									</div>
+									<!--end::Info-->
+								</div>
+								<!--end::user-->
+							</div>
+							<!--end::Title-->
+							<!--begin::Stats-->
+							<div class="d-flex flex-wrap flex-stack">
+								<!--begin::Wrapper-->
+								<div class="d-flex flex-column flex-grow-1 pe-8">
+									<!--begin::Stats-->
+									<div class="d-flex flex-wrap">
+										<!--begin::Stat-->
+										<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+											<!--begin::شماره کارت-->
+											<div class="d-flex align-items-center">
+												<i class="ki-duotone ki-arrow-up fs-3 text-success me-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+												<div class="fs-2 fw-bold">@Model.Exams.Count()</div>
+											</div>
+											<!--end::شماره کارت-->
+											<!--begin::Tags-->
+											<div class="fw-semibold fs-6 text-gray-400">تعداد کارنامه ها</div>
+											<!--end::Tags-->
+										</div>
+										<!--end::Stat-->
+									</div>
+									<!--end::Stats-->
+								</div>
+								<!--end::Wrapper-->
+							</div>
+							<!--end::Stats-->
+						</div>
+						<!--end::Info-->
+					</div>
+					<!--end::Details---->
+					<!--begin::Navs-->
+					<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bold">
+						<!--begin::Nav item-->
+						<li class="nav-item mt-2">
+							<a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="/">کارنامه ها</a>
+						</li>
+						<!--end::Nav item-->
+					</ul>
+					<!--begin::Navs-->
+				</div>
+			</div>
+			<!--end::Profile-->
+		}
+
+
+
 		<!--begin::جداول Widget 13-->
 		<div class="card mb-5 mb-xl-8">
 			<!--begin::Header-->
@@ -37,30 +152,26 @@
 						<!--begin::Table body-->
 						<tbody>
 							<tr>
-								<td>
-									<div class="form-check form-check-sm form-check-custom form-check-solid">
-										<input class="form-check-input widget-13-check" type="checkbox" value="1" />
-									</div>
-								</td>
-								<td>
-									<a href="#" class="text-dark fw-bold text-hover-primary fs-6">56037-XDER</a>
-								</td>
-								<td>
-									<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">برزیل</a>
-									<span class="text-muted fw-semibold text-muted d-block fs-7">کد PH</span>
-								</td>
-								<td>
-									<a href="#" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">05/28/2020</a>
-									<span class="text-muted fw-semibold text-muted d-block fs-7">کد پرداخت شده</span>
-								</td>
-								<td class="text-end">
-									<a href="#" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
-										<i class="ki-duotone ki-pencil fs-2">
-											<span class="path1"></span>
-											<span class="path2"></span>
-										</i>
-									</a>
-								</td>
+								@if (Model.Exams != null)
+								{
+									foreach(var item in Model.Exams)
+									{
+										<td>
+											<div class="form-check form-check-sm form-check-custom form-check-solid">
+												<input class="form-check-input widget-13-check" type="checkbox" value="1" />
+											</div>
+										</td>
+										<td>
+											<a href="/Exam/Detail?examId=@item.Id" class="text-dark fw-bold text-hover-primary fs-6">@item.ExamName</a>
+										</td>
+										<td>
+											<a href="/Exam/Detail?examId=@item.Id" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">@item.ExamDate.Value.ToShortDateString()</a>
+										</td>
+										<td>
+											<a href="/Exam/Detail?examId=@item.Id" class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">@item.UserName</a>
+										</td>
+									}
+								}
 							</tr>
 						</tbody>
 						<!--end::Table body-->

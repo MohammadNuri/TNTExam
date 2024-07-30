@@ -81,8 +81,13 @@ namespace TNTExam.Controllers
 			return Json(result);
 		}
 
+		public IActionResult Logout()
+		{
 
+			HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+			return RedirectToAction("SignIn", "Authentication");
 
+		}
 
 	}
 }

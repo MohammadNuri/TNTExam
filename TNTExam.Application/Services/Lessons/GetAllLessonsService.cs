@@ -45,7 +45,37 @@ namespace TNTExam.Application.Services.Lessons
 		}
 
 
+		public ServiceResult<List<LessonDto>> GetAllLessons()
+		{
+			var lessons = _context.Lessons.ToList();
+			if (!lessons.Any())
+			{
+				return new ServiceResult<List<LessonDto>>()
+				{
+					IsSuccess = false,
+					Message = "درسی پیدا نشد",
+				};
+			}
 
+			List<LessonDto> lessonList = new List<LessonDto>();
+
+			foreach (var lesson in lessons)
+			{
+				LessonDto lessonDto = new LessonDto()
+				{
+					LessonId = lesson.Id,
+					Name = lesson.Name,
+				};
+				lessonList.Add(lessonDto);
+			}
+
+			return new ServiceResult<List<LessonDto>>()
+			{
+				IsSuccess = true,
+				Message = "لیست با موفقیت برگشت دادده شده",
+				Value = lessonList,
+			};
+		}
 
 	}
 }
